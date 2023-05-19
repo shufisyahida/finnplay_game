@@ -1,0 +1,47 @@
+.input {
+  position: relative;
+}
+
+.input input {
+  border-color: var(--color-black-50);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+  line-height: 120%;
+  font-size: 16px;
+  height: 64px;
+  padding-top: 16px;
+  font-family: var(--font-prompt);
+}
+
+.input input:focus {
+  outline: none;
+}
+
+.input input:focus + .label .text,
+:not(input[value=""]) + .label .text {
+  font-size: 12px;
+  transform: translate(0, -50%);
+}
+
+.label {
+  position: absolute;
+  top: -4px;
+  bottom: 0;
+  left: 16px;
+  right: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-size: 16px;
+  color: var(--color-black-semi);
+  background-color: transparent;
+  transform: translate(0);
+  transition: transform 0.15s ease-out, font-size 0.15s ease-out,
+    background-color 0.2s ease-out, color 0.15s ease-out;
+}
