@@ -6,17 +6,23 @@ export default function Button({
   children,
   isLoading,
   buttonType = "default",
+  buttonSize = "md",
+  full,
   ...buttonProps
 }: {
   isLoading?: boolean;
-  buttonType: "default" | "primary";
+  buttonType?: "default" | "primary";
+  buttonSize?: "md" | "lg";
+  full?: boolean;
 } & React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >) {
   return (
     <button
-      className={`${styles.button} ${styles[buttonType]}`}
+      className={`${styles.button} ${styles[buttonType]} ${
+        styles[buttonSize]
+      } ${full ? styles.full : ""}`}
       {...buttonProps}
     >
       {isLoading ? (
