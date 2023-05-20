@@ -1,0 +1,27 @@
+.checkboxWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.checkbox {
+  padding: 1rem 0.5rem;
+  margin-right: 4rem;
+  font-size: 1.6rem;
+}
+
+.checkbox [role="checkbox"]:focus {
+  border: 2px solid #0198e1;
+}
+
+.selected {
+  background: var(--color-yellow);
+  border-radius: 0.4rem;
+}
+
+.label {
+  font-size: 1.6rem;
+  color: var(--color-black-semi);
+  margin-bottom: 1rem;
+}

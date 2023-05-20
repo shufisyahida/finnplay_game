@@ -10,7 +10,7 @@ export default function Input({
   ...inputProps
 }: {
   label: string;
-  search: boolean;
+  search?: boolean;
 } & React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
