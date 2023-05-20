@@ -18,9 +18,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-size: 62.5%;
 }
 
 body {
   background-color: var(--color-black-25);
   color: var(--color-black);
+}
+
+@media (max-width: 428px) {
 }
