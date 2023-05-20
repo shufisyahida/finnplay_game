@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Button from "@/components/Button";
 import CheckboxGroup from "@/components/CheckboxGroup";
 import RadioGroup from "@/components/RadioGroup";
+import InputRange from "@/components/InputRange";
 
 export default function Home() {
   const [text, setText] = useState("");
@@ -27,6 +28,7 @@ export default function Home() {
           { value: "2", label: "Z-A" },
         ]}
       />
+      <InputRange label="Column size" min="2" max="4" step="1" />
     </main>
   );
 }

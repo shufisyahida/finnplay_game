@@ -28,7 +28,9 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ label, options }) => {
 
   return (
     <div>
-      <span className={styles.label}>{label}</span>
+      <div className={styles.label} role="label">
+        {label}
+      </div>
       <div className={styles.radioWrapper} role="radiogroup">
         {options.map((option) => (
           <div

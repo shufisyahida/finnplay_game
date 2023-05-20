@@ -34,7 +34,9 @@ const CheckboxGroup: React.FC<{
 
   return (
     <div>
-      <span className={styles.label}>{label}</span>
+      <div className={styles.label} role="label">
+        {label}
+      </div>
       <div className={styles.checkboxWrapper}>
         {options.map((checkbox) => (
           <div
