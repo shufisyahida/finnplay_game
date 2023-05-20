@@ -34,12 +34,13 @@ const CheckboxGroup: React.FC<{
 
   return (
     <div>
-      <label className={styles.label}>{label}</label>
+      <span className={styles.label}>{label}</span>
       <div className={styles.checkboxWrapper}>
         {options.map((checkbox) => (
           <div
             role="checkbox"
             id={`checkbox-${checkbox.value}`}
+            key={`checkbox-${checkbox.value}`}
             aria-checked={selectedCheckboxes.includes(checkbox.value)}
             onClick={() => handleCheckboxChange(checkbox.value)}
             onKeyDown={(event) => handleKeyDown(event, checkbox.value)}

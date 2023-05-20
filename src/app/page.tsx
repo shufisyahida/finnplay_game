@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import React, { useState } from "react";
 import Button from "@/components/Button";
 import CheckboxGroup from "@/components/CheckboxGroup";
+import RadioGroup from "@/components/RadioGroup";
 
 export default function Home() {
   const [text, setText] = useState("");
@@ -19,7 +20,13 @@ export default function Home() {
         label="Options"
         options={[{ value: "1", label: "Checkbox 1" }]}
       />
-      <input type="search" />
+      <RadioGroup
+        label="Sort"
+        options={[
+          { value: "1", label: "A-Z" },
+          { value: "2", label: "Z-A" },
+        ]}
+      />
     </main>
   );
 }

@@ -1,0 +1,27 @@
+.radioWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.radio {
+  padding: 1rem 0.5rem;
+  margin-right: 4rem;
+  font-size: 1.6rem;
+}
+
+.radio [role="radio"]:focus {
+  border: 2px solid #0198e1;
+}
+
+.selected {
+  background: var(--color-yellow);
+  border-radius: 0.4rem;
+}
+
+.label {
+  font-size: 1.6rem;
+  color: var(--color-black-semi);
+  margin-bottom: 1rem;
+}
