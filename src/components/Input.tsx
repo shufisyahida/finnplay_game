@@ -5,14 +5,21 @@ export default function Input({
   label,
   value,
   onChange,
+  ...inputProps
 }: {
   label: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}) {
+} & React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>) {
   return (
     <div className={styles.input}>
-      <input autoComplete="off" value={value} onChange={onChange} />
+      <input
+        autoComplete="off"
+        value={value}
+        onChange={onChange}
+        {...inputProps}
+      />
       <label className={styles.label}>
         <div className={styles.text}>{label}</div>
       </label>

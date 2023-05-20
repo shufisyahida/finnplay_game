@@ -1,19 +1,21 @@
 .input {
   position: relative;
+  width: 100%;
 }
 
 .input input {
   border-color: var(--color-black-50);
-  border-width: 1px;
+  border-width: 0.1rem;
   border-style: solid;
-  border-radius: 4px;
-  padding-left: 16px;
-  padding-right: 16px;
+  border-radius: 0.4rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
   line-height: 120%;
-  font-size: 16px;
-  height: 64px;
-  padding-top: 16px;
+  font-size: 1.6rem;
+  height: 6.4rem;
+  padding-top: 1.6rem;
   font-family: var(--font-prompt);
+  width: 100%;
 }
 
 .input input:focus {
@@ -22,15 +24,15 @@
 
 .input input:focus + .label .text,
 :not(input[value=""]) + .label .text {
-  font-size: 12px;
+  font-size: 1.2rem;
   transform: translate(0, -50%);
 }
 
 .label {
   position: absolute;
-  top: -4px;
+  top: -0.4rem;
   bottom: 0;
-  left: 16px;
+  left: 1.6rem;
   right: 0;
   pointer-events: none;
   display: flex;
@@ -38,7 +40,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 1.6rem;
   color: var(--color-black-semi);
   background-color: transparent;
   transform: translate(0);
