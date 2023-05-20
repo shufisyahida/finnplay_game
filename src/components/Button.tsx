@@ -5,13 +5,20 @@ import Image from "next/image";
 export default function Button({
   children,
   isLoading,
+  buttonType = "default",
   ...buttonProps
-}: { isLoading?: boolean } & React.DetailedHTMLProps<
+}: {
+  isLoading?: boolean;
+  buttonType: "default" | "primary";
+} & React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >) {
   return (
-    <button className={styles.button} {...buttonProps}>
+    <button
+      className={`${styles.button} ${styles[buttonType]}`}
+      {...buttonProps}
+    >
       {isLoading ? (
         <Image
           className={styles.loading}
