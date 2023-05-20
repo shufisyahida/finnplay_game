@@ -47,3 +47,9 @@
   transition: transform 0.15s ease-out, font-size 0.15s ease-out,
     background-color 0.2s ease-out, color 0.15s ease-out;
 }
+
+.search {
+  position: absolute;
+  top: 2.4rem;
+  right: 2rem;
+}
