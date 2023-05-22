@@ -28,7 +28,9 @@ export default function Home() {
           { value: "2", label: "Z-A" },
         ]}
       />
-      <InputRange label="Column size" min="2" max="4" step="1" />
+      <div style={{ padding: 8, width: "100%" }}>
+        <InputRange label="Column size" min="2" max="4" step="1" />
+      </div>
     </main>
   );
 }

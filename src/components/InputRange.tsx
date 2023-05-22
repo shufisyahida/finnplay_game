@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styles from "./InputRange.module.css";
 
 export default function InputRange({
@@ -8,14 +8,14 @@ export default function InputRange({
   label,
   ...inputProps
 }: { label: React.ReactNode } & JSX.IntrinsicElements["input"]) {
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = useState<number>(Number(min));
 
   const handleClick = (selectedValue: number) => () => {
     setValue(selectedValue);
   };
 
   const calculatedRange = useMemo((): number => {
-    return ((value - Number(min)) / (Number(max) - Number(min))) * 100;
+    return (value - Number(min)) / (Number(max) - Number(min));
   }, [value, min, max]);
 
   const list = [];
@@ -24,6 +24,7 @@ export default function InputRange({
       <div
         className={`${styles.option} ${value >= i ? styles.included : ""}`}
         onClick={handleClick(i)}
+        style={{ visibility: value === i ? "hidden" : "visible" }}
       >
         {i}
       </div>
@@ -35,6 +36,16 @@ export default function InputRange({
       <div className={styles.label} role="label">
         {label}
       </div>
+      <div
+        className={styles.value}
+        style={{
+          left: `calc((100% * ${calculatedRange}) - (${
+            2.4 / (Number(max) - Number(min))
+          }rem * ${value - Number(min)}))`,
+        }}
+      >
+        {value}
+      </div>
       <input
         type="range"
         className={styles.range}
@@ -45,12 +56,13 @@ export default function InputRange({
         onChange={(e) => setValue(Number(e.target.value))}
         {...inputProps}
       />
-      <div className={styles.progressWrapper}>
-        <div
-          className={styles.progress}
-          style={{ width: `${calculatedRange}%` }}
-        />
-      </div>
+      <div
+        className={styles.progress}
+        style={{
+          WebkitTransform: `scaleX(${calculatedRange})`,
+          transform: `scaleX(${calculatedRange})`,
+        }}
+      />
       <div className={styles.list}>{list}</div>
     </div>
   );
