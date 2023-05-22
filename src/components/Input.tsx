@@ -7,6 +7,7 @@ export default function Input({
   value,
   onChange,
   search,
+  className,
   ...inputProps
 }: {
   label: string;
@@ -16,14 +17,15 @@ export default function Input({
   HTMLInputElement
 >) {
   return (
-    <div className={styles.input}>
+    <div className={`${styles.input} ${className || ""}`}>
       <input
+        id={label}
         autoComplete="off"
         value={value}
         onChange={onChange}
         {...inputProps}
       />
-      <label className={styles.label}>
+      <label htmlFor={label} className={styles.label}>
         <div className={styles.text}>{label}</div>
       </label>
       {search && (

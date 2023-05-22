@@ -3,34 +3,52 @@ import Input from "@/components/Input";
 import styles from "./page.module.css";
 import React, { useState } from "react";
 import Button from "@/components/Button";
-import CheckboxGroup from "@/components/CheckboxGroup";
-import RadioGroup from "@/components/RadioGroup";
-import InputRange from "@/components/InputRange";
+import Image from "next/image";
 
 export default function Home() {
-  const [text, setText] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <main className={styles.main}>
-      <Input
-        label="Login"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+      <Image
+        src="/logo.svg"
+        alt=""
+        width={70}
+        height={70}
+        className={styles.logo}
       />
-      <Button>Login</Button>
-      <CheckboxGroup
-        label="Options"
-        options={[{ value: "1", label: "Checkbox 1" }]}
-      />
-      <RadioGroup
-        label="Sort"
-        options={[
-          { value: "1", label: "A-Z" },
-          { value: "2", label: "Z-A" },
-        ]}
-      />
-      <div style={{ padding: 8, width: "100%" }}>
-        <InputRange label="Column size" min="2" max="4" step="1" />
-      </div>
+      <form className={styles.form} aria-label="Sign in">
+        <fieldset>
+          <Input
+            label="Login"
+            tabIndex={0}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.input}
+            required
+          />
+          <Input
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+            required
+          />
+          <Button
+            buttonSize="lg"
+            buttonType="primary"
+            className={styles.button}
+            type="submit"
+            full
+            isLoading={isLoading}
+          >
+            Login
+          </Button>
+        </fieldset>
+      </form>
     </main>
   );
 }

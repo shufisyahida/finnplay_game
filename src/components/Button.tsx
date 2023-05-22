@@ -8,6 +8,7 @@ export default function Button({
   buttonType = "default",
   buttonSize = "md",
   full,
+  className,
   ...buttonProps
 }: {
   isLoading?: boolean;
@@ -22,7 +23,7 @@ export default function Button({
     <button
       className={`${styles.button} ${styles[buttonType]} ${
         styles[buttonSize]
-      } ${full ? styles.full : ""}`}
+      } ${full ? styles.full : ""} ${className || ""}`}
       {...buttonProps}
     >
       {isLoading ? (
