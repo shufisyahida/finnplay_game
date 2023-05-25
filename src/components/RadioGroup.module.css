@@ -9,6 +9,11 @@
   padding: 1rem 0.5rem;
   margin-right: 4rem;
   font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.radio label {
+  cursor: pointer;
 }
 
 .radio [role="radio"]:focus {

@@ -12,10 +12,7 @@ export default function Input({
 }: {
   label: string;
   search?: boolean;
-} & React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->) {
+} & JSX.IntrinsicElements["input"]) {
   return (
     <div className={`${styles.input} ${className || ""}`}>
       <input

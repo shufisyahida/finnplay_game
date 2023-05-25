@@ -1,0 +1,175 @@
+.main {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  font-size: 1.6rem;
+}
+
+.header {
+  width: 100%;
+  height: 7rem;
+  background: var(--color-black-25);
+  box-shadow: 0 -0.2rem 1.8rem rgba(128, 128, 128, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 100;
+  padding: 0 5.7%;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  gap: 2rem;
+  margin-top: 7.5rem;
+  padding: 0 5.7%;
+}
+
+.list {
+  flex: 1;
+  overflow-y: hidden;
+  margin: 7.5rem 0;
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 2rem;
+}
+
+.list img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.8rem;
+}
+
+.filter {
+  width: 33%;
+  background-color: #fff;
+  position: sticky;
+  top: 7.5rem;
+  max-width: 41.2rem;
+  margin: 7.5rem 0 5.6rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 3.2rem;
+  border: 0.1rem solid #f2f2f2;
+  border-radius: 0.8rem;
+  height: fit-content;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+.misc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.misc span {
+  color: var(--color-black-semi);
+}
+
+.misc button {
+  width: 12rem;
+}
+
+.expandFilter {
+  display: none;
+}
+
+.columnFilter {
+  display: initial;
+}
+
+.column-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.column-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.column-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 418px) {
+  .main {
+    flex-direction: column;
+    width: 100%;
+    padding: 1.2rem 0;
+  }
+
+  .header {
+    height: 7rem;
+    background: var(--color-black-25);
+    box-shadow: none;
+    position: initial;
+    z-index: 0;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0;
+    padding: 2.4rem;
+    gap: 3.2rem;
+  }
+
+  .list {
+    order: 2;
+    margin: 0;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .filter {
+    position: initial;
+    width: 100%;
+    order: 1;
+    margin: 0;
+  }
+
+  .filters {
+    display: none;
+  }
+
+  .expand .filter {
+    position: absolute;
+    height: fit-content;
+    z-index: 20;
+    top: 10.6rem;
+    order: 2;
+    width: calc(100vw - 4.8rem);
+  }
+
+  .expand .list {
+    order: 1;
+    margin-top: 21.8rem;
+  }
+
+  .expand .filters {
+    display: flex;
+  }
+
+  .expandFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 0;
+    color: var(--color-blue);
+  }
+
+  .columnFilter {
+    display: none;
+  }
+}

@@ -12,13 +12,10 @@ export default function Button({
   ...buttonProps
 }: {
   isLoading?: boolean;
-  buttonType?: "default" | "primary";
+  buttonType?: "default" | "primary" | "transparent";
   buttonSize?: "md" | "lg";
   full?: boolean;
-} & React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->) {
+} & JSX.IntrinsicElements["button"]) {
   return (
     <button
       className={`${styles.button} ${styles[buttonType]} ${

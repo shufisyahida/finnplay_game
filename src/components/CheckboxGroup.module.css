@@ -3,12 +3,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  column-gap: 2.5rem;
+  row-gap: 1rem;
 }
 
 .checkbox {
   padding: 1rem 0.5rem;
-  margin-right: 4rem;
   font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.checkbox label {
+  cursor: pointer;
 }
 
 .checkbox [role="checkbox"]:focus {

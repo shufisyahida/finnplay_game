@@ -1,4 +1,10 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, {
+  DOMAttributes,
+  MouseEventHandler,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styles from "./InputRange.module.css";
 
 export default function InputRange({
@@ -6,25 +12,29 @@ export default function InputRange({
   max,
   step,
   label,
+  value,
+  onChange,
+  onThumbClick,
+  className,
   ...inputProps
-}: { label: React.ReactNode } & JSX.IntrinsicElements["input"]) {
-  const [value, setValue] = useState<number>(Number(min));
-
-  const handleClick = (selectedValue: number) => () => {
-    setValue(selectedValue);
-  };
-
+}: JSX.IntrinsicElements["input"] & {
+  label: React.ReactNode;
+  onThumbClick: (i: number) => MouseEventHandler<HTMLDivElement>;
+}) {
   const calculatedRange = useMemo((): number => {
-    return (value - Number(min)) / (Number(max) - Number(min));
+    return (Number(value) - Number(min)) / (Number(max) - Number(min));
   }, [value, min, max]);
 
   const list = [];
   for (let i = Number(min); i <= Number(max); i = i + Number(step)) {
     list.push(
       <div
-        className={`${styles.option} ${value >= i ? styles.included : ""}`}
-        onClick={handleClick(i)}
-        style={{ visibility: value === i ? "hidden" : "visible" }}
+        key={i}
+        className={`${styles.option} ${
+          Number(value) >= i ? styles.included : ""
+        }`}
+        onClick={onThumbClick(i)}
+        style={{ visibility: Number(value) === i ? "hidden" : "visible" }}
       >
         {i}
       </div>
@@ -32,7 +42,7 @@ export default function InputRange({
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className || ""}`}>
       <div className={styles.label} role="label">
         {label}
       </div>
@@ -41,7 +51,7 @@ export default function InputRange({
         style={{
           left: `calc((100% * ${calculatedRange}) - (${
             2.4 / (Number(max) - Number(min))
-          }rem * ${value - Number(min)}))`,
+          }rem * ${Number(value) - Number(min)}))`,
         }}
       >
         {value}
@@ -53,7 +63,7 @@ export default function InputRange({
         value={value}
         min={min}
         max={max}
-        onChange={(e) => setValue(Number(e.target.value))}
+        onChange={onChange}
         {...inputProps}
       />
       <div

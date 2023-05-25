@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./RadioGroup.module.css";
 
 interface RadioGroupProps {
@@ -7,22 +7,27 @@ interface RadioGroupProps {
     label: string;
     value: string;
   }[];
+  value?: string;
+  onSelect?: (value: string) => void;
+  onKeyDown?: () => void;
 }
 
-const RadioGroup: React.FC<RadioGroupProps> = ({ label, options }) => {
-  const [selectedOption, setSelectedOption] = useState<string>();
-
-  const handleClick = (value: string) => {
-    setSelectedOption(value);
-  };
-
+const RadioGroup: React.FC<RadioGroupProps> = ({
+  label,
+  options,
+  value,
+  onSelect,
+  onKeyDown,
+}) => {
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLSpanElement>,
-    value: string
+    currentValue: string
   ) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      handleClick(value);
+      if (onSelect) {
+        onSelect(currentValue);
+      }
     }
   };
 
@@ -36,12 +41,12 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ label, options }) => {
           <div
             role="radio"
             key={option.value}
-            aria-checked={selectedOption === option.value}
-            onClick={() => handleClick(option.value)}
+            aria-checked={value === option.value}
+            onClick={() => onSelect && onSelect(option.value)}
             onKeyDown={(event) => handleKeyDown(event, option.value)}
             tabIndex={0}
             className={`${styles.radio} ${
-              selectedOption === option.value ? styles.selected : ""
+              value === option.value ? styles.selected : ""
             }`}
           >
             <label>{option.label}</label>

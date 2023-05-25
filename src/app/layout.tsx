@@ -7,11 +7,6 @@ const prompt = Prompt({
   variable: "--font-prompt",
 });
 
-export const metadata = {
-  title: "Finnplay Games",
-  description: "Finnplay Games",
-};
-
 export default function RootLayout({
   children,
 }: {
