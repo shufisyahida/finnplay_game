@@ -8,6 +8,10 @@ const createJestConfig = nextJest({
 const config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "^@/lib/auth$": "<rootDir>/src/lib/auth",
+    "^@/lib/user$": "<rootDir>/src/lib/user",
+  },
 };
 
 export default createJestConfig(config);

@@ -2,7 +2,7 @@ import { Session } from "@/interfaces/session";
 import crypto from "crypto";
 import { v4 as uuidv4 } from "uuid";
 
-const users: Session[] = [];
+export const users: Session[] = [];
 
 createUser({
   username: process.env.PLAYER_1 as string,

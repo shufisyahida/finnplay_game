@@ -23,7 +23,7 @@ export async function getLoginSession(): Promise<Session | undefined> {
   const session = await Iron.unseal(token, SECRET_TOKEN, Iron.defaults);
   const expiresAt = session.createdAt + session.maxAge * 1000;
 
-  if (Date.now > expiresAt) {
+  if (Date.now() > expiresAt) {
     throw new Error("Session expired");
   }
 
