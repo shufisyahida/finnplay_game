@@ -1,14 +1,40 @@
 "use client";
-import Input from "@/components/Input";
-import styles from "./page.module.css";
+import Input from "@/components/form/Input";
+import styles from "./Login.module.css";
 import React, { useState } from "react";
-import Button from "@/components/Button";
+import Button from "@/components/form/Button";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function Login() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+      if (!res.ok) {
+        setIsLoading(false);
+      } else {
+        router.refresh();
+      }
+    } catch (error: unknown) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <main className={styles.main}>
@@ -19,7 +45,11 @@ export default function Home() {
         height={70}
         className={styles.logo}
       />
-      <form className={styles.form} aria-label="Sign in">
+      <form
+        className={styles.form}
+        aria-label="Sign in"
+        onSubmit={handleSubmit}
+      >
         <fieldset>
           <Input
             label="Login"

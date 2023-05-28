@@ -1,19 +1,21 @@
 "use client";
-import Input from "@/components/Input";
-import styles from "./page.module.css";
+import Input from "@/components/form/Input";
+import styles from "./Dashboard.module.css";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Button from "@/components/Button";
+import Button from "@/components/form/Button";
 import Image from "next/image";
 import { Data, Game, Group, SortType } from "@/interfaces";
-import CheckboxGroup from "@/components/CheckboxGroup";
+import CheckboxGroup from "@/components/form/CheckboxGroup";
 import sortBy from "lodash/sortBy";
 import filter from "lodash/filter";
-import RadioGroup from "@/components/RadioGroup";
-import InputRange from "@/components/InputRange";
+import RadioGroup from "@/components/form/RadioGroup";
+import InputRange from "@/components/form/InputRange";
 import uniq from "lodash/uniq";
-import { reverse, toLower } from "lodash";
+import { capitalize, reverse, toLower } from "lodash";
+import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function Dashboard({ username }: { username?: string }) {
+  const router = useRouter();
   const [data, setData] = useState<Data>();
 
   const getValidGameList = (
@@ -76,6 +78,14 @@ export default function Home() {
     } else {
       setIsShowFilters(true);
     }
+  };
+
+  const handleLogout: React.MouseEventHandler<HTMLButtonElement> = () => {
+    fetch("/api/logout", { method: "POST" }).then((res) => {
+      if (res.ok) {
+        router.refresh();
+      }
+    });
   };
 
   useEffect(() => {
@@ -141,6 +151,11 @@ export default function Home() {
     <main className={styles.main} ref={headerRef}>
       <div className={styles.header}>
         <Image src="/logo.svg" alt="" width={70} height={70} />
+        <span>{capitalize(username)}</span>
+        <Button buttonType="transparent" onClick={handleLogout}>
+          <Image src="/user.svg" alt="" width={16} height={16} />
+          Logout
+        </Button>
       </div>
       <div className={`${styles.body} ${isShowFilters ? styles.expand : ""}`}>
         <div className={`${styles.list} ${columnStyle}`}>

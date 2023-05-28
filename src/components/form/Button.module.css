@@ -11,6 +11,8 @@
 
   border-radius: 0.4rem;
   border-width: 0px;
+
+  cursor: pointer;
 }
 
 .default {
