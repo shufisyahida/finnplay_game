@@ -14,9 +14,14 @@ import uniq from "lodash/uniq";
 import { capitalize, reverse, toLower } from "lodash";
 import { useRouter } from "next/navigation";
 
-export default function Dashboard({ username }: { username?: string }) {
+export default function Dashboard({
+  username,
+  data,
+}: {
+  username?: string;
+  data: Data;
+}) {
   const router = useRouter();
-  const [data, setData] = useState<Data>();
 
   const getValidGameList = (
     dataGroups: Group[] | undefined,
@@ -137,15 +142,8 @@ export default function Dashboard({ username }: { username?: string }) {
   }, [query, providerIds, groupIds, sort]);
 
   useEffect(() => {
-    fetch("/data.json", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((json: Data) => {
-        setData(json);
-        setDisplayedGameList(getValidGameList(json.groups, json.games));
-      });
-  }, []);
+    setDisplayedGameList(getValidGameList(data.groups, data.games));
+  }, [data]);
 
   return (
     <main className={styles.main} ref={headerRef}>
