@@ -43,7 +43,7 @@ export default function Dashboard({
   );
 
   const [isShowFilters, setIsShowFilters] = useState(false);
-  const headerRef = useRef<null | HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const [displayedGameList, setDisplayedGameList] = useState<Game[]>([]);
 
   const [query, setQuery] = useState<string>("");
@@ -97,7 +97,7 @@ export default function Dashboard({
     if (!isShowFilters && headerRef.current) {
       headerRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [isShowFilters]);
+  }, [isShowFilters, headerRef.current]);
 
   useEffect(() => {
     let filteredList = [];
@@ -147,16 +147,19 @@ export default function Dashboard({
 
   return (
     <main className={styles.main} ref={headerRef}>
-      <div className={styles.header}>
+      <header className={styles.header} role="header">
         <Image src="/logo.svg" alt="" width={70} height={70} />
         <span>{capitalize(username)}</span>
         <Button buttonType="transparent" onClick={handleLogout}>
           <Image src="/user.svg" alt="" width={16} height={16} />
           Logout
         </Button>
-      </div>
+      </header>
       <div className={`${styles.body} ${isShowFilters ? styles.expand : ""}`}>
-        <div className={`${styles.list} ${columnStyle}`}>
+        <div
+          className={`${styles.list} ${columnStyle}`}
+          data-testid="list-container"
+        >
           {displayedGameList?.map((game) => (
             <Image
               key={game.id}
@@ -218,6 +221,7 @@ export default function Dashboard({
               value={columnSize}
               onChange={(e) => setColumnSize(e.target.value)}
               onThumbClick={(i) => () => setColumnSize(i.toString())}
+              data-testid="column-size"
             />
             <div className={styles.misc}>
               <span>Games amount: {displayedGameList?.length}</span>

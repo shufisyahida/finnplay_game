@@ -49,7 +49,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
               value === option.value ? styles.selected : ""
             }`}
           >
-            <label>{option.label}</label>
+            <span>{option.label}</span>
           </div>
         ))}
       </div>

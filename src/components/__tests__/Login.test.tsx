@@ -16,6 +16,13 @@ describe("Login", () => {
   test("submits form successfully", async () => {
     render(<Login />);
 
+    fireEvent.change(screen.getByLabelText("Login"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "testpassword" },
+    });
+
     global.fetch = jest.fn().mockResolvedValueOnce(
       Promise.resolve({
         ok: true,
@@ -23,13 +30,6 @@ describe("Login", () => {
         json: jest.fn().mockResolvedValue({}),
       }) as unknown as Response
     );
-
-    fireEvent.change(screen.getByLabelText("Login"), {
-      target: { value: "testuser" },
-    });
-    fireEvent.change(screen.getByLabelText("Password"), {
-      target: { value: "testpassword" },
-    });
 
     fireEvent.submit(screen.getByRole("submit"));
     expect(screen.getByAltText("loading")).toBeInTheDocument();
@@ -42,6 +42,13 @@ describe("Login", () => {
   test("submits form failed", async () => {
     render(<Login />);
 
+    fireEvent.change(screen.getByLabelText("Login"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "testpassword" },
+    });
+
     global.fetch = jest.fn().mockResolvedValueOnce(
       Promise.resolve({
         ok: false,
@@ -49,13 +56,6 @@ describe("Login", () => {
         json: jest.fn().mockResolvedValue({}),
       }) as unknown as Response
     );
-
-    fireEvent.change(screen.getByLabelText("Login"), {
-      target: { value: "testuser" },
-    });
-    fireEvent.change(screen.getByLabelText("Password"), {
-      target: { value: "testpassword" },
-    });
 
     fireEvent.submit(screen.getByRole("submit"));
     expect(screen.queryByAltText("loading")).toBeInTheDocument();
