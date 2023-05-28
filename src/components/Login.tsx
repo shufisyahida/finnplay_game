@@ -74,6 +74,7 @@ export default function Login() {
             type="submit"
             full
             isLoading={isLoading}
+            role="submit"
           >
             Login
           </Button>
